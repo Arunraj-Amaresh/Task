@@ -1,0 +1,33 @@
+package com.example.demo;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+
+public class CsvFileReadWrite {
+
+    public static void main(String[] args) {
+        String inBoundPath = "C:\\Users\\BSIT-021\\Documents\\workspace-spring-tool-suite-4-4.23.1.RELEASE\\Task2-1\\src\\main\\java\\InBound\\InBound.csv";
+        String outBoundPath = "C:\\Users\\BSIT-021\\Documents\\workspace-spring-tool-suite-4-4.23.1.RELEASE\\Task2-1\\src\\main\\\\java\\OutBound\\outbound.csv";
+
+        try {
+            FileReader fileReader = new FileReader(inBoundPath);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            FileWriter fileWriter = new FileWriter(outBoundPath);
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+          
+                fileWriter.write(line + "\n");
+            }
+
+       
+            bufferedReader.close();
+            fileWriter.close();
+
+        } catch (Exception e) {
+        	
+        	e.printStackTrace();
+        }
+    }}
