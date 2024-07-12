@@ -1,0 +1,4 @@
+invoice_No,product_No,amount,order_Date,seller_Id,sync
+1,p01,500,12-03-2024,s01,true
+2,p01,500,12-03-2024,s01,true
+3,p01,500,12-03-2024,s01,false
