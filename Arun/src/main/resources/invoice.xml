@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<invoices> 
+   <invoice>      
+      <invoice_No>1</invoice_No> 
+      <product_No>p01</product_No> 
+      <amount>500</amount> 
+      <order_Date>06-05-2007</order_Date> 
+      <seller_Id>u01</seller_Id> 
+      <sync>true</sync> 
+   </invoice>
+   
+   </invoices>
