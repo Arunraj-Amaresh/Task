@@ -1,0 +1,74 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <batch:job id="csvJob">
+        <batch:step id="step1">
+            <batch:tasklet>
+                <batch:chunk reader="csvItemReader" processor="csvItemProcessor" writer="csvItemWriter" commit-interval="10"/>
+            </batch:tasklet>
+        </batch:step>
+    </batch:job>
+
+    <bean id="csvItemReader" class="com.example.SpringBatch.CsvItemReader"/>
+    <bean id="csvItemProcessor" class="com.example.SpringBatch.CsvItemProcessor"/>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+    <bean id="csvItemWriter" class="com.example.SpringBatch.CsvItemWriter">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+    <batch:job-repository id="jobRepository" data-source="dataSource" transaction-manager="transactionManager" isolation-level-for-create="DEFAULT"/>
+    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository"/>
+    </bean>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/blue"/>
+        <property name="username" value="root"/>
+        <property name="password" value="Arunraj@45"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
+
+  
+    <context:component-scan base-package="com.example.SpringBatch"/>
+
+
+    <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="methodInvokingJobDetail"/>
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+<bean id="jobLogicBean" class="com.example.SpringBatch.TaskApplication">
+    <property name="message" value="Hello, World!" />
+</bean>
+
+
+    
+    <bean id="methodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="jobLogicBean"/>  
+        <property name="targetMethod" value="toString"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+          <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="methodInvokingJobDetail"/>
+        <property name="cronExpression" value="0 0/10 *  * * ?"/>
+    </bean>
+</beans>
