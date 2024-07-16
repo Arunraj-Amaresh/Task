@@ -1,0 +1,35 @@
+<?xml version="1.0"?>  
+<Invoices>  
+    <Invoice>  
+        <invoice_No>1</invoice_No>  
+        <product_No>p01</product_No>  
+        <amount>500</amount>  
+        <seller_Id>s01</seller_Id>  
+        <order_Date>16-07-2024</order_Date>  
+    </Invoice>  
+      
+   <Invoice>  
+        <invoice_No>2</invoice_No>  
+        <product_No>p02</product_No>  
+        <amount>600</amount>  
+        <seller_Id>s02</seller_Id>  
+        <order_Date>16-07-2024</order_Date>  
+    </Invoice>  
+  
+   <Invoice>  
+        <invoice_No>3</invoice_No>  
+        <product_No>p01</product_No>  
+        <amount>500</amount>  
+        <seller_Id>s01</seller_Id>  
+        <order_Date>17-07-2024</order_Date>  
+    </Invoice>  
+  
+    <Invoice>  
+        <invoice_No>4</invoice_No>  
+        <product_No>p02</product_No>  
+        <amount>600</amount>  
+        <seller_Id>s01</seller_Id>  
+        <order_Date>18-07-2024</order_Date>  
+    </Invoice>   
+  
+</Invoices>  
