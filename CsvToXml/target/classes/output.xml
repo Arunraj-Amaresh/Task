@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Records>
+    <Record>
+        <AccountNumber>106320225995060</AccountNumber>
+        <PostingAmount>10000</PostingAmount>
+        <PostingCcy>USD</PostingCcy>
+    </Record>
+    <Record>
+        <AccountNumber>109582560005521</AccountNumber>
+        <PostingAmount>50000</PostingAmount>
+        <PostingCcy>INR</PostingCcy>
+    </Record>
+    <Record>
+        <AccountNumber>106320225995066</AccountNumber>
+        <PostingAmount>870000</PostingAmount>
+        <PostingCcy>USD</PostingCcy>
+    </Record>
+    <Record>
+        <AccountNumber>109582560005531</AccountNumber>
+        <PostingAmount>590000</PostingAmount>
+        <PostingCcy>INR</PostingCcy>
+    </Record>
+</Records>
