@@ -1,0 +1,58 @@
+What is a Proxy?
+In simple terms, a proxy acts as an intermediary between two systems, helping them communicate without directly connecting. It’s like a middleman that receives requests from one system, processes them, and then sends them to another system.
+
+Why Use a Proxy in Spring Boot?
+Security: A proxy can hide the internal details of your application, making it harder for attackers to target it directly.
+Load Balancing: It can distribute incoming requests across multiple servers, preventing any single server from getting overloaded.
+Caching: Proxies can store responses to frequent requests, so they don't always have to go back to the server, speeding up response times.
+Monitoring and Logging: They can track requests and responses, making it easier to monitor and log what’s happening in your application.
+When to Use a Proxy?
+You’d use a proxy in situations where you need to:
+
+Secure communication between your Spring Boot application and other services (like APIs).
+Manage a high volume of traffic by balancing the load between different servers.
+Improve performance by caching frequently accessed data.
+Implement specific rules or policies before requests reach your application.
+How to Use a Proxy in Spring Boot?
+Let's say your Spring Boot application needs to communicate with an external API. Instead of connecting directly, you set up a proxy server.
+
+Example: Using a Proxy to Connect to an External API
+Configuration:
+
+In your application.properties or application.yml, you configure the proxy settings:
+properties
+Copy code
+# application.properties
+proxy.host=proxy.example.com
+proxy.port=8080
+Code:
+
+In your Spring Boot code, you use these proxy settings when making HTTP requests:
+java
+Copy code
+@Bean
+public RestTemplate restTemplate(RestTemplateBuilder builder) {
+    return builder
+        .additionalCustomizers(new ProxyCustomizer(proxyHost, proxyPort))
+        .build();
+}
+Here, RestTemplate is a Spring Boot utility for making HTTP requests, and the proxy is set up to handle these requests.
+
+Proxy in Action:
+
+When your application makes a request to an external API, it first sends the request to the proxy server.
+The proxy server then forwards the request to the external API.
+The API responds, the proxy server intercepts the response, and finally sends it back to your application.
+Real-Life Example:
+Imagine you have a Spring Boot application that fetches weather data from a third-party service.
+
+Without a Proxy: Your app directly communicates with the weather service. If the weather service is slow or has issues, it directly affects your app.
+
+With a Proxy: Your app sends the request to the proxy. The proxy can manage retries, handle load, and cache responses. If the weather service is slow, the proxy might already have the data cached, so your app still gets a quick response.
+
+Summary:
+What: A proxy acts as an intermediary between systems.
+Why: For security, load balancing, caching, and monitoring.
+When: When you need to secure communication, manage traffic, improve performance, or enforce policies.
+How: By configuring proxy settings in your Spring Boot application and using them in your code.
+This makes your application more secure, efficient, and easier to manage in complex environments.
