@@ -1,4 +1,3 @@
-
 Learning Objectives
 
 Understand the importance of data models.
@@ -571,41 +570,3 @@ Model Relationships: A group of fields can be used to access data from multiple 
 Listing and Forms: New models appear in lists and forms for easy access.
 Linking Models: Use linking options to access data from one model to another, facilitating application processing.
 By following these steps, you can effectively create and manage data models for various applications.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
